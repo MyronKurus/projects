@@ -1,0 +1,60 @@
+<div class="modal modal-overlay you-won" ui-if="youWon" ui-shared-state="youWon" ng-controller="YouWonCtrl as youWonCtrl">
+  <div class="modal-dialog you-won-dialog">
+    <div class="modal-content you-won-content">
+      <div class="modal-header you-won-header">
+        <a href="#/" ui-turn-off="youWon">
+          <img src="../resources/images/x.png" class="you-won-x">
+        </a>
+      </div>
+      <div class="modal-body">
+
+      	<div class="you-won-title">We’ve got a winner!</div>
+
+        <div class="deal you-won-deal" ng-style="{'background': youWonCtrl.deal.background, 'border': '1px dashed {{youWonCtrl.deal.border}}'}">
+  				<img ng-src="{{ youWonCtrl.deal.deal.store.logo }}" class="top-logo">
+  				<div class="contacts">
+  					<div class="vert-center">
+  						<div class="store">{{ youWonCtrl.deal.deal.store.name }}</div>
+  						<div class="street">{{ youWonCtrl.deal.deal.store.address }}</div>
+  						<div class="phone-number">{{ youWonCtrl.deal.deal.store.phone }}</div>
+  					</div>
+  				</div>
+  				<div class="offer" ng-style="{'border': '1px dashed {{youWonCtrl.deal.border}}'}">
+  					<div class="vert-center">
+  						<div class="discount">{{ youWonCtrl.deal.deal.title }}</div>
+  						<div class="description">{{ youWonCtrl.deal.deal.text }}</div>
+  					</div>
+  				</div>
+  			</div>
+
+  			<div class="phone-text" ng-hide="youWonCtrl.user||youWonCtrl.phone">Enter your phone number to claim your deal</div>
+        <form name="phone" ng-hide="youWonCtrl.user||youWonCtrl.phone">
+  			 <input name="phoneInput" tabindex="-1" type="tel" class="phone-input" placeholder="(123)-456-7890" ng-model="youWonCtrl.phoneInput" required>
+        </form>
+
+        <div class="add-to-deals" ng-show="youWonCtrl.phoneInput" ng-click="youWonCtrl.addPhone()">
+          <div class="vert-center">Continue</div>
+        </div>
+
+        <div class="phone-text" ng-hide="youWonCtrl.user||!youWonCtrl.phone">Enter your 4-digit pin for {{ youWonCtrl.phoneInput }} to claim your deal</div>
+        <form name="pin" class="phone-pin-input" ng-hide="youWonCtrl.user||!youWonCtrl.phone">
+          <input class="pin-input" type="tel" id="part1" ng-model="youWonCtrl.pinPart1" maxlength="1" move-next-on-maxlength />
+          <input class="pin-input" type="tel" id="part2" ng-model="youWonCtrl.pinPart2" maxlength="1" move-next-on-maxlength move-prev-on-backspace />
+          <input class="pin-input" type="tel" id="part3" ng-model="youWonCtrl.pinPart3" maxlength="1" move-next-on-maxlength move-prev-on-backspace />
+          <input class="pin-input" type="tel" tabindex="-1" id="part4" ng-model="youWonCtrl.pinPart4" maxlength="1" move-prev-on-backspace />
+         
+        </form>
+        <div class="forgot" ng-hide="youWonCtrl.user||!youWonCtrl.phone" ui-turn-off="youWon" ui-turn-on="forgotPin">Forgot pin?</div>
+
+        <div class="add-to-deals" ng-show="youWonCtrl.pinPart4" ng-click="youWonCtrl.signIn()">
+          <div class="vert-center">+ Add to My Deals</div>
+        </div>
+
+        <div class="add-to-deals" ng-show="youWonCtrl.user" ng-click="youWonCtrl.addDeal( youWonCtrl.deal.deal._id, youWonCtrl.deal.deal.store._id )">
+          <div class="vert-center">Continue</div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

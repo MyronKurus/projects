@@ -1,0 +1,27 @@
+<div class="container home-content" ng-controller="SignUpCtrl as signUpCtrl">
+    <div class="row cont-collum">
+        <div class="col-md-6 col-md-offset-2 left-cont">
+            <div class="title_block left">
+                <h1>How people build software</h1>
+                <p><span class="text-about-company">Millions of developers use DeviLib to build personal projects, support their businesses, and work together on open source technologies.</span></p>
+            </div>
+        </div>
+        <form ng-submit="signUpCtrl.apply()">
+            <div class="col-md-6 col-md-offset-2 right-cont">
+                <div class="title_block right">
+                    <label class="form-cont">
+                        <input type="text" class="form-control form-control-log input-block js-username" placeholder="Pick a username" ng-model="signUpCtrl.userName">
+                    </label></br>
+                    <label class="form-cont">
+                        <input type="text" class="form-control form-control-log input-block js-email" placeholder="You email addres" ng-model="signUpCtrl.email">
+                    </label></br>
+                    <label class="form-cont">
+                        <input type="password" class="form-control form-control-log input-block js-pass" placeholder="Create a password" ng-model="signUpCtrl.password">
+                    </label></br>
+                    <button type="submit" class="btn btn-success sing-log">Sign up</button>
+                    <p class="txt-below-log">By clicking "Sign up for DeviLib", you agree to our terms of service and privacy policy. We'll occasionally send you account related emails.</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

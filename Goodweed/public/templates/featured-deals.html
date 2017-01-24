@@ -1,0 +1,49 @@
+<div ui-content-for="title">
+    <span>Featured</span>
+</div>
+
+<div ui-content-for="left-nav">
+  	<div class="btn btn-navbar navbar-sides">
+  		<a href="#/deals">
+		<img src="/resources/images/arrow-dark.png" id="navbar-left-arrow">
+		My Deals
+		</a>
+	</div>
+</div>
+
+<div ui-content-for="right-nav">
+  	<div class="btn btn-navbar navbar-sides"> 
+	</div>
+</div>
+
+<div class="scrollable" ng-controller="FeaturedDealsCtrl as featuredDealsCtrl">
+	<div class="scrollable-content">
+		
+		<div class="list-group text-center">
+			<div class="list-group-item">
+				<div class="deal featured-deal" ng-repeat="deal in featuredDealsCtrl.deals" ng-style="{'background': deal.background, 'border': '1px dashed {{deal.border}}'}">
+					<img ng-src="{{ deal.store.logo }}" class="top-logo">
+					<div class="contacts">
+						<div class="vert-center">
+							<div class="store">{{ deal.store.name }}</div>
+							<div class="street">{{ deal.store.address }}</div>
+							<div class="phone-number">{{ deal.store.phone }}</div>
+						</div>
+					</div>
+					<div class="offer" ng-style="{'border': '1px dashed {{deal.border}}'}">
+						<div class="vert-center">
+							<div class="discount">{{ deal.title }}</div>
+							<div class="description">{{ deal.text }}</div>
+						</div>
+					</div>
+					<div class="redeem-button" ng-click="featuredDealsCtrl.addDeal( deal._id, deal.store._id, deal )">+ Add to My Deals</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div ui-content-for="modals">
+  <div ng-include="'/templates/featured-deals-popup.html'"></div>
+</div>

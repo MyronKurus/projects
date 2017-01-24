@@ -1,0 +1,61 @@
+<div id="join-page"  ng-controller="SignUpCtrl as signUpCtrl">
+    <div class="center-block-join">
+        
+        <div class="header-part">
+            <h1 class="join-h">Join GitHub</h1>
+            <p class="join-p">The best way to design, build, and ship software.</p>
+            <ul class="join-stps">
+                <li class="active">
+                    <img class="j-step-img" src="img/facebook-avatar.jpg">
+                    <p class="st-p"><span>Step 1:</span></p>
+                    <p class="st-p">Set up a personal account</p>
+                </li>
+                <li>
+                    <img class="j-step-img" src="img/facebook-avatar.jpg">
+                    <p class="st-p"><span>Step 2:</span></p>
+                    <p class="st-p">Choose your plan</p>
+                </li>
+                <li>
+                    <img class="j-step-img" src="img/facebook-avatar.jpg">
+                    <p class="st-p"><span>Step 3:</span></p>
+                    <p class="st-p">Tailor your experience</p>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="container j-account">
+            <h2 class="header-j-account">Create your personal account</h2>
+            <label class="u">Username</br>
+                <input type="text" class="j-inp j-userName" ng-model="signUpCtrl.userName">
+            </label></br>
+            <p class="join-txt">This will be your username — you can enter your organization’s username next.</p> 
+            <label class="u">Email Addres</br>
+                <input type="text" class="j-inp j-email" ng-model="signUpCtrl.email">
+            </label></br>
+            <p class="join-txt">You will occasionally receive account related emails. We promise not to share your email with anyone.</p>
+            <label class="u">Password</br>
+                <input type="password" class="j-inp j-password" ng-model="signUpCtrl.password">
+            </label></br>
+            <p class="join-txt">Use at least one lowercase letter, one numeral, and seven characters.</p>
+            <p class="agree-rules">By clicking on "Create an account" below, you are agreeing to the <a href="#">Terms of Service</a> and the <a href="#">Privacy Policy.</a></p>
+            <div class="create-account">
+                <button type="button" class="btn btn-success join-log" ng-click="signUpCtrl.apply()">Create an account</button>
+            </div>
+        </div>
+            
+        <div class="container j-information">
+            <h1>You’ll love GitHub</h1>
+            <div class="block-ifo-g">
+                <p class="block-info-txt"><span>Unlimited</span> collaborators</p>
+                <p class="block-info-txt"><span>Unlimited</span> public repositories</p>
+            </div>
+            <div class="block-ifo-j">
+                <p class="block-info-txt">&#10004;&nbsp;Great communication</p>
+                <p class="block-info-txt">&#10004;&nbsp;Frictionless development</p>
+                <p class="block-info-txt">&#10004;&nbsp;Open source community</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <title>Dendo Tree</title>
+
+        <link rel="stylesheet" type="text/css" href="/styles/Main.css" />
+        <link rel="stylesheet" type="text/css" href="/styles/General.css" />
+        <link rel="stylesheet" type="text/css" href="/styles/Viewer.css" />
+        <link rel="stylesheet" type="text/css" href="/styles/CountrySelect.css" />
+        <link rel="stylesheet" href="/styles/trumbowyg.min.css">
+        <link rel="stylesheet" href="/styles/icons.css">
+
+        <script src="/scripts/lib/fabric.min.js"></script>
+        <script src="/scripts/lib/fabric.canvasex.js"></script>
+        <script src="/scripts/lib/jq.min.js"></script>
+        <script src="/scripts/lib/jquery.mousewheel.min.js"></script>
+        <script src="/scripts/lib/trumbowyg.min.js"></script>
+        <script src="/scripts/lib/html2canvas.js"></script>
+        <script src="/scripts/lib/background-check.min.js"></script>
+        <script src="/scripts/lib/jqColorPicker.min.js"></script>
+        <script src="/scripts/lib/ckeditor/ckeditor.js"></script>
+
+        <script src="/scripts/dendoTree/DT.js"></script>
+        <script src="/scripts/dendoTree/ImEx.js"></script>
+        <script src="/scripts/dendoTree/LeftMenu.js"></script>
+        <script src="/scripts/dendoTree/Handlers.js"></script>
+        <script src="/scripts/dendoTree/Node.js"></script>
+        <script src="/scripts/dendoTree/nodes/ImageNode.js"></script>
+        <script src="/scripts/dendoTree/nodes/BlogNode.js"></script>
+        <script src="/scripts/dendoTree/nodes/PageNode.js"></script>
+
+        <script src="/scripts/ui/UI.js"></script>
+        <script src="/scripts/ui/SettingsMenu.js"></script>
+        <script src="/scripts/ui/LeftMenu.js"></script>
+
+        <script src="/scripts/ui/viewer/Viewer.js?1"></script>
+        <script src="/scripts/ui/viewer/ImageSlide.js?1"></script>
+        <script src="/scripts/ui/viewer/BlogSlide.js?1"></script>
+
+        <script src="/scripts/utils/Uploader.js"></script>
+
+        <script src="/scripts/App.js"></script>
+        <script src="/scripts/services/App.js"></script>
+
+    </head>
+
+    <body>
+
+        <div id="bd-wrapper" >
+
+            <div id="preloader"></div>
+            <canvas id="dt-canvas" width="1500" height="750"></canvas>
+            <div id="top-right-corner-bar"></div>
+
+        </div>
+
+        <div id="settings"><span class="lnr lnr-menu"></span>Settings</div>
+        <div id="left-bar">
+            <div id="editor_wrapper">
+                <div class='status-wrapper'>
+                    <div class="status"></div>
+                </div>
+                <div id="button_save_and_close"></div>
+                <label for="node_title">Title</label>
+                <input id="node_title">
+                <div id="title_bottom_label">10 characters left</div>
+                <div id="load-image">
+                    <label for="fileselect">Upload image</label>
+                    <div id="drop_image">
+                        <div class="progress"></div>
+                        <div class="drop-image-top">Drop Image Here</div>
+                        <div class="menu">
+                            <div id="upload-image">Upload image</div>
+                        </div>
+                    </div>
+                    <div id="drop_image_bottom_label"><span>Drop Image Here</span> jpg, png and gif</div>
+                </div>
+
+                <div id="chose_left_menu-item" class="wrapper-dropdown">
+                    <span>No watermark</span>
+                    <div class="list_icon"><span class="lnr lnr-chevron-down" style="width: 24px;"></span></div>
+                    <ul class="dropdown-trigger left_menu-item">
+                        <li sid="0"><span>No watermark</span></li>
+                        <li sid="1"><span>Cross text</span></li>
+                        <li sid="2"><span>Text small</span></li>
+                        <li sid="3"><span>Text medium</span></li>
+                        <li sid="4"><span>Text large</span></li>
+                    </ul>
+                </div>
+
+                <div id="editor-block">
+                    <label id ="editor-label" for="editor">Text</label>
+                    <div id="editor"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="viewer">
+            <div id="viewer-close" class="color_switch"><span class="lnr lnr-cross"></span></div>
+            <div id="viewer-edit"><span class="lnr lnr-pencil color_switch"></span><div class="save-label">SAVED</div></div>
+            <div id="prev-arrow" class="color_switch"><span class="lnr lnr-chevron-left"></span></div>
+            <div id="next-arrow" class="color_switch"><span class="lnr lnr-chevron-right"></span></div>
+            <div id="image_number" class="color_switch">5/25</div>
+            <div id="loading-popup"></div>
+        </div>
+
+        <div id="canvas-disable"></div>
+
+        <div id="settings-wrapper">
+
+            <div id="set_leftBar">
+                <div id="leftBarTitle"><span class="lnr"></span>Settings<span id="leftBarClose" class="lnr lnr-cross"></span></div>
+                <div id="leftBarBody">
+                    <div id="leftBarGeneral" class="leftBarItem"><span class="lnr lnr-cog"></span> General</div>
+                    <!-- <div id="leftBarCustomization" class="leftBarItem selectedLeftBarItem"><span class="lnr lnr-pushpin"></span> Customization</div> -->
+                    <div id="leftBarSearch" class="leftBarItem"><span class="lnr lnr-users"></span> Search & Sharing</div>
+                    <div id="leftBarYourData" class="leftBarItem"><span class="lnr lnr-highlight"></span> Your data</div>
+
+                </div>
+            </div>
+            <div id="set_body">
+                <div id="set_title">
+                    <div class="image"></div>
+                </div>
+                <div id="set_General">
+                    <div class="general-settings">
+
+                    <div class="header">
+                        <h3>Header<span>Saving changes</span></h3>
+
+                        <ul class="header-list">
+                            <li><label for="title">Title</label></li>
+                            <li><input id="general_title" type="text" name="title"/></li>
+                            <li><label for="sub-title">Subtitle</label></li>
+                            <li><input id="general_subTitle" type="text" name="sub-title"/></li>
+                        </ul>
+                    </div>
+
+                        <div class="account">
+                            <h3>Homepage</h3>
+                        </div>
+
+                            <ul class="homepage">
+                                <li class="left-item checkbox-title">Visual style</li>
+                                <li>
+                                    <input type="radio" rid="0" id="c-option" name="v-style" checked>
+                                    <label for="c-option">Classic</label>
+
+                                    <div class="check"></div>
+                                </li>
+
+                                <li>
+                                    <input type="radio" rid="1" id="s-option" name="v-style">
+                                    <label for="s-option">Slideshow</label>
+
+                                    <div class="check">
+                                        <div class="inside"></div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <a href="#">Go to homepage</a>
+                                </li>
+                                <li class="left-item marg-top checkbox-title">Language</li>
+                                <li>
+                                    <input type="radio" rid="en" id="e-option" name="lang" checked>
+                                    <label for="e-option">English</label>
+
+                                    <div class="check"></div>
+                                </li>
+                                <li>
+                                    <input type="radio" rid="nl" id="n-option" name="lang" >
+                                    <label for="n-option">Nederlands</label>
+
+                                    <div class="check"></div>
+                                </li>
+                                <br>
+                                <li class="left-item checkbox-title">Font</li>
+                                <li>
+                                    <div id="chose_page_font" class="wrapper-dropdown">
+                                        <span style="font-family: Open Sans">Open Sans</span>
+                                        <div class="list_icon"><span class="lnr lnr-chevron-down" style="width: 48px;"></span></div>
+                                        <ul class="font-dropdown dropdown-trigger page-font">
+                                            <li sid="tahoma"><span style="font-family: Tahoma;">Tahoma</span></li>
+                                            <li sid="georgia"><span style="font-family: Georgia;">Georgia</span></li>
+                                            <li sid="verdana"><span style="font-family: Verdana;">Verdana</span></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="left-item checkbox-title">Background</li>
+                                <li>
+                                    <div id="chose_page_background" class="wrapper-dropdown">
+                                        <span>White</span>
+                                        <div class="list_icon"><span class="lnr lnr-chevron-down" style="width: 48px;"></span></div>
+                                        <ul class="dropdown-trigger page-background">
+                                            <li sid="black"><span>Black</span></li>
+                                            <li sid="white"><span>White</span></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="left-item marg-top checkbox-title">Provider</li>
+                                <li>
+                                    <input type="radio" id="t-option" rid="0" name="provider" checked>
+                                    <label for="t-option">Tomston</label>
+
+                                    <div class="check"></div>
+                                </li>
+                                <li>
+                                    <input type="radio" id="fol-option" rid="1" name="provider">
+                                    <label for="fol-option">Folibee</label>
+
+                                    <div class="check"></div>
+                                </li>
+
+                                <li class="left-item">For ADMIN only</li>
+                            </ul>
+
+                        <div class="account-settings">
+                            <p>Account</p>
+                                <ul class="email">
+                                    <li>
+                                        <label for="email">E-mail address</label>
+                                    </li>
+                                    <li>
+                                        <input type="text" name="email" id="set-email" />
+                                        <button class="save-input email-btn">Save</button>
+                                    </li>
+                                    <li><span class="form_hint">Not visible to visitors</span></li>
+                                </ul>
+
+                                <ul class="password">
+                                    <li>
+                                        <label for="pass">Password</label>
+                                    </li>
+                                    <li>
+                                        <input type="password" name="pass" id="set-pass" />
+                                        <button class="save-input pass-btn">Save</button>
+                                    </li>
+                                    <li><span class="form_hint">8 - 20 characters</span></li>
+                                </ul>
+                        </div>
+
+                        <div class="billing">
+                            <h3>Billing</h3>
+                        </div>
+
+                        <div class="billing-settings">
+                            <ul class="price">
+                                <li>
+                                    <label for="price-plan">Price plan</label>
+                                </li>
+                                <li>
+                                    <div id="chose_price_plan" class="wrapper-dropdown">
+                                        <span>Premium - 19 euro/month</span>
+                                        <div class="list_icon"><span class="lnr lnr-chevron-down" style="width: 48px;"></span></div>
+                                        <ul class="dropdown-trigger price-plan">
+                                            <li><span>Premium - 19 euro/month</span></li>
+                                            <li><span>Typical - 12 euro/month</span></li>
+                                            <li><span>Base - 6  euro/month</span></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><span class="form_hint">Can be changed during the test period or if renewing the subscription</span></li>
+                                <li><a href="#">What does my plan include?</a></li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div id="set_Customization">
+                    <div id="banner" class="banner">
+                         <div class="banner_title">
+                            <h3>Banner <span>Changes saved</span></h3>
+                        </div>
+                        <div class="status"></div>
+                        <div id="curbanner" style="display:none;">
+                            <div class="template_item" templateNumber="1" style="width: 100%;height: initial;">
+                                <div class="title" id="ws_title">JOHN SMITH</div>
+                                <div class="subtitle" id="ws_subTitle">PORTRAIT AND FASHION PHOTOGRAPHY</div>
+                            </div>
+                        </div>
+                        <div id="custom_body">
+                            <div id="template_field">
+                                <div class="custom_titles">Select template</div>
+                                <div id="chose_templates" class="wrapper-dropdown">
+                                    <span>Default</span>
+                                    <div class="template_item" templateNumber="1">
+                                        <div class="title">Your Name</div>
+                                        <div class="subtitle">PHOTOGRAPHY</div>
+                                    </div>
+                                    <div class="list_icon"><span class="lnr lnr-chevron-down"></span></div>
+                                    <ul class="dropdown dropdown-trigger">
+                                        <li><span>Default</span>
+                                            <div class="template_item" templateNumber="1">
+                                                <div class="title">Your Name</div>
+                                                <div class="subtitle">PHOTOGRAPHY</div>
+                                            </div>
+                                        </li>
+                                        <li><span>Simple</span>
+                                            <div class="template_item" templateNumber="2">
+                                                <div class="title">Your Name</div>
+                                                <div class="subtitle">PHOTOGRAPHY</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="banner_backgound">
+                                <div class="custom_titles">Background color</div>
+                                <div id="chose_bg" class="wrapper-dropdown">
+                                    <div class="bg-icon" style="background-color: white"></div><span>White</span>
+                                    <div class="list_icon"><span class="lnr lnr-chevron-down"></span></div>
+                                    <ul class="bg-dropdown dropdown-trigger">
+                                        <li><div class="bg-icon" style="background-color: transparent"></div><span>None</span></li>
+                                        <li><div class="bg-icon" style="background-color: red"></div><span>Red</span></li>
+                                        <li><div class="bg-icon" style="background-color: green"></div><span>Green</span></li>
+                                        <li><div class="bg-icon" style="background-color: white"></div><span>White</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="title_input" class="wrapper-dropdown">
+                                <div class="custom_titles">Website title</div>
+                                <input class="website_inputs" placeholder="Your Name" value="JOHN SMITH">
+                                <div class="website_title_bottom_label">20 characters left</div>
+                            </div>
+
+                            <div id="title_font">
+                                <div class="custom_titles">Font</div>
+                                <div id="chose_title_font" class="wrapper-dropdown">
+                                    <span style="font-family: Open Sans">Open Sans</span>
+                                    <div class="list_icon"><span class="lnr lnr-chevron-down" style="width: 48px;"></span></div>
+                                    <ul class="font-dropdown dropdown-trigger">
+                                        <li><span style="font-family: Open Sans">Open Sans</span></li>
+                                        <li><span style="font-family: Sans">Sans</span></li>
+                                        <li><span style="font-family: Verdana">Verdana</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="title_bold" class="wrapper-dropdown">
+                                <span class="lnr lnr-bold" style="width: 48px;"></span>
+                            </div>
+                            <div id="title_size" class="wrapper-dropdown">
+                                <span class="lnr lnr-text-size" style="width: 48px;"></span>
+                                <ul class="size-dropdown dropdown-trigger">
+                                    <li><span>18</span></li>
+                                    <li><span>19</span></li>
+                                    <li><span>20</span></li>
+                                    <li><span>21</span></li>
+                                </ul>
+                            </div>
+                            <div id="title_color" class="wrapper-dropdown">
+                                <div class="title_colorpicker"></div>
+                            </div>
+
+                            <div id="subtitle_input" class="wrapper-dropdown">
+                                <div class="custom_titles">Website subtitle</div>
+                                <input class="website_inputs" placeholder="Photography" value="PORTRAIT AND FASHION PHOTOGRAPHY">
+                                <div class="website_title_bottom_label">18 characters left</div>
+                            </div>
+
+                            <div id="subtitle_font">
+                                <div class="custom_titles">Font</div>
+                                <div id="chose_subtitle_font" class="wrapper-dropdown">
+                                    <span style="font-family: Arial">Arial</span>
+                                    <div class="list_icon"><span class="lnr lnr-chevron-down" style="width: 48px;"></span></div>
+                                    <ul class="font-dropdown dropdown-trigger">
+                                        <li><span style="font-family: Open Sans">Open Sans</span></li>
+                                        <li><span style="font-family: Sans">Sans</span></li>
+                                        <li><span style="font-family: Verdana">Verdana</span></li>
+                                        <li><span style="font-family: Arial">Arial</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="subtitle_bold" class="wrapper-dropdown">
+                                <span class="lnr lnr-bold" style="width: 48px;"></span>
+                            </div>
+                            <div id="subtitle_size" class="wrapper-dropdown">
+                                <span class="lnr lnr-text-size" style="width: 48px;"></span>
+                                    <ul class="size-dropdown dropdown-trigger">
+                                        <li><span>6</span></li>
+                                        <li><span>7</span></li>
+                                        <li><span>8</span></li>
+                                        <li><span>9</span></li>
+                                    </ul>
+                            </div>
+                            <div id="subtitle_color" class="wrapper-dropdown">
+                                <div class="subtitle_colorpicker"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="set_Search">
+                    
+                    <div class="search-sharing">
+                        <div class="engines">
+                            <h3>Analytics<span>Changes saved</span></h3>    
+                        </div>
+                        <div class="analytics-id">
+                            <ul class="analytics">
+                                <li><label for="google-analytics">Google Analytics ID</label></li>
+                                <li><input class="g-analytics" type="text" name="google-analytics"/></li>
+                                <li><span class="form_hint">Tracking ID</span><a href="#">Create a free Google Analytics account </a></li>
+                            </ul>
+                        </div>
+                        <div class="s-media">
+                            <h3>Social media</h3>    
+                        </div>
+                        
+                        <div class="networks-list">
+                            <ul class="facebook">
+
+                                <li class="c-box">
+                                    <input id="fb-option" class="checkbox fb" type="checkbox" name="fb">
+                                    <label for="fb-option">Facebook</label>
+                                    <div class="check"></div>
+                                </li>
+                                <li>
+                                    <input class="fbook" type="text" name="fbook"/>
+                                    <div class="input-error">Incorrect Facebook link</div>
+                                </li>
+                            </ul>
+                            
+                            <ul class="twitter">
+
+                                <li class="c-box">
+                                    <input id="tw-option" class="checkbox twitt" type="checkbox" name="twitt">
+                                    <label for="tw-option">Twitter</label>
+                                    <div class="check"></div>
+                                </li>
+                                <li>
+                                    <input class="twit" type="text" name="twit"/>
+                                    <div class="input-error">Incorrect Twitter link</div>
+                                </li>
+                            </ul>
+                            
+                            <ul class="g-plus">
+
+                                <li class="c-box">
+                                    <input id="gp-option" class="checkbox googlePlus" type="checkbox" name="googlePlus">
+                                    <label for="gp-option">Google Plus</label>
+                                    <div class="check">
+                                </li>
+                                <li>
+                                    <input class="gplus" type="text" name="plus"/>
+                                    <div class="input-error">Incorrect Google Plus link</div>
+                                </li>
+                            </ul>
+                        
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="user_Data">
+                    
+                    <div class="your-data">
+                        <div class="prof-data">
+                            <h3>Your data<span>Changes saved</span></h3>
+                        </div>
+                        
+                        <ul class="data-list">
+                            <li><label for="invoice-name">Invoice name</label></li>
+                            <li class="invoice">
+                                <input class="invoice-name" type="text" name="invoice-name"/>
+                                <div class="data-input-error">Incorrect invoice format</div>
+                            </li>
+                            
+                            <li><label for="last-name">Last name</label></li>
+                            <li class="l-name">
+                                <input class="last-name" type="text" name="last-name"/>&nbsp;&nbsp;*
+                                <div class="data-input-error">Incorrect last name format</div>
+                            </li>
+                            
+                            <li><label for="ptefix">Prefix</label></li>
+                            <li>
+                                <input class="tiny prefix" type="text" name="prefix"/>
+                                <div class="data-input-error">Incorrect prefix format</div>
+                            </li>
+                            
+                            <li><label for="first-name">First name</label></li>
+                            <li class="f-name">
+                                <input class="first-name" type="text" name="first-name"/>&nbsp;&nbsp;*
+                                <div class="data-input-error">Incorrect name format</div>
+                            </li>
+                            
+                            <li><label for="address">Address</label></li>
+                            <li><input class="address" type="text" name="address"/>&nbsp;&nbsp;*</li>
+                            
+                            <li><label for="city">City</label></li>
+                            <li class="city-li">
+                                <input class="city" type="text" name="City"/>&nbsp;&nbsp;*
+                                <div class="data-input-error">Incorrect city format</div>
+                            </li>
+                            
+                            <li><label for="zip-code">Zip code</label></li>
+                            <li class="z-code">
+                                <input class="tiny zip-code" type="text" name="zip-code"/>&nbsp;&nbsp;*
+                                <div class="tiny-data-input-error">Incorrect ZIP format</div>
+                            </li>
+                            
+                            <li><label for="country">Country</label></li>
+                            <li>
+
+                                <div id="chose_your_counry" class="wrapper-dropdown country">
+                                    <span>Netherlands</span>
+                                    <div class="list_icon"><span class="lnr lnr-chevron-down" style="width: 48px;"></span></div>
+                                    <ul class="dropdown-trigger country-list">
+                                        <li><span>Afghanistan</span></li>
+                                        <li><span>Åland Islands</span></li>
+                                        <li><span>Albania</span></li>
+                                        <li><span>Algeria</span></li>
+                                        <li><span>American Samoa</span></li>
+                                        <li><span>Andorra</span></li>
+                                        <li><span>Angola</span></li>
+                                        <li><span>Anguilla</span></li>
+                                        <li><span>Antarctica</span></li>
+                                        <li><span>Antigua and Barbuda</span></li>
+                                        <li><span>Argentina</span></li>
+                                        <li><span>Armenia</span></li>
+                                        <li><span>Aruba</span></li>
+                                        <li><span>Australia</span></li>
+                                        <li><span>Austria</span></li>
+                                        <li><span>Azerbaijan</span></li>
+                                        <li><span>Bahamas</span></li>
+                                        <li><span>Bahrain</span></li>
+                                        <li><span>Bangladesh</span></li>
+                                        <li><span>Barbados</span></li>
+                                        <li><span>Belarus</span></li>
+                                        <li><span>Belgium</span></li>
+                                        <li><span>Belize</span></li>
+                                        <li><span>Benin</span></li>
+                                        <li><span>Bermuda</span></li>
+                                        <li><span>Bhutan</span></li>
+                                        <li><span>Bolivia, Plurinational State of</span></li>
+                                        <li><span>Bonaire, Sint Eustatius and Saba</span></li>
+                                        <li><span>Bosnia and Herzegovina</span></li>
+                                        <li><span>Botswana</span></li>
+                                        <li><span>Bouvet Island</span></li>
+                                        <li><span>Brazil</span></li>
+                                        <li><span>British Indian Ocean Territory</span></li>
+                                        <li><span>Brunei Darussalam</span></li>
+                                        <li><span>Bulgaria</span></li>
+                                        <li><span>Burkina Faso</span></li>
+                                        <li><span>Burundi</span></li>
+                                        <li><span>Cambodia</span></li>
+                                        <li><span>Cameroon</span></li>
+                                        <li><span>Canada</span></li>
+                                        <li><span>Cape Verde</span></li>
+                                        <li><span>Cayman Islands</span></li>
+                                        <li><span>Central African Republic</span></li>
+                                        <li><span>Chad</span></li>
+                                        <li><span>Chile</span></li>
+                                        <li><span>China</span></li>
+                                        <li><span>Christmas Island</span></li>
+                                        <li><span>Cocos (Keeling) Islands</span></li>
+                                        <li><span>Colombia</span></li>
+                                        <li><span>Comoros</span></li>
+                                        <li><span>Congo</span></li>
+                                        <li><span>Congo, the Democratic Republic of the</span></li>
+                                        <li><span>Cook Islands</span></li>
+                                        <li><span>Costa Rica</span></li>
+                                        <li><span>Côte d'Ivoire</span></li>
+                                        <li><span>Croatia</span></li>
+                                        <li><span>Cuba</span></li>
+                                        <li><span>Curaçao</span></li>
+                                        <li><span>Cyprus</span></li>
+                                        <li><span>Czech Republic</span></li>
+                                        <li><span>Denmark</span></li>
+                                        <li><span>Djibouti</span></li>
+                                        <li><span>Dominica</span></li>
+                                        <li><span>Dominican Republic</span></li>
+                                        <li><span>Ecuador</span></li>
+                                        <li><span>Egypt</span></li>
+                                        <li><span>El Salvador</span></li>
+                                        <li><span>Equatorial Guinea</span></li>
+                                        <li><span>Eritrea</span></li>
+                                        <li><span>Estonia</span></li>
+                                        <li><span>Ethiopia</span></li>
+                                        <li><span>Falkland Islands (Malvinas)</span></li>
+                                        <li><span>Faroe Islands</span></li>
+                                        <li><span>Fiji</span></li>
+                                        <li><span>Finland</span></li>
+                                        <li><span>France</span></li>
+                                        <li><span>French Guiana</span></li>
+                                        <li><span>French Polynesia</span></li>
+                                        <li><span>French Southern Territories</span></li>
+                                        <li><span>Gabon</span></li>
+                                        <li><span>Gambia</span></li>
+                                        <li><span>Georgia</span></li>
+                                        <li><span>Germany</span></li>
+                                        <li><span>Ghana</span></li>
+                                        <li><span>Gibraltar</span></li>
+                                        <li><span>Greece</span></li>
+                                        <li><span>Greenland</span></li>
+                                        <li><span>Grenada</span></li>
+                                        <li><span>Guadeloupe</span></li>
+                                        <li><span>Guam</span></li>
+                                        <li><span>Guatemala</span></li>
+                                        <li><span>Guernsey</span></li>
+                                        <li><span>Guinea</span></li>
+                                        <li><span>Guinea-Bissau</span></li>
+                                        <li><span>Guyana</span></li>
+                                        <li><span>Haiti</span></li>
+                                        <li><span>Heard Island and McDonald Islands</span></li>
+                                        <li><span>Holy See (Vatican City State)</span></li>
+                                        <li><span>Honduras</span></li>
+                                        <li><span>Hong Kong</span></li>
+                                        <li><span>Hungary</span></li>
+                                        <li><span>Iceland</span></li>
+                                        <li><span>India</span></li>
+                                        <li><span>Indonesia</span></li>
+                                        <li><span>Iran, Islamic Republic of</span></li>
+                                        <li><span>Iraq</span></li>
+                                        <li><span>Ireland</span></li>
+                                        <li><span>Isle of Man</span></li>
+                                        <li><span>Israel</span></li>
+                                        <li><span>Italy</span></li>
+                                        <li><span>Jamaica</span></li>
+                                        <li><span>Japan</span></li>
+                                        <li><span>Jersey</span></li>
+                                        <li><span>Jordan</span></li>
+                                        <li><span>Kazakhstan</span></li>
+                                        <li><span>Kenya</span></li>
+                                        <li><span>Kiribati</span></li>
+                                        <li><span>Korea, Democratic People's Republic of</span></li>
+                                        <li><span>Korea, Republic of</span></li>
+                                        <li><span>Kuwait</span></li>
+                                        <li><span>Kyrgyzstan</span></li>
+                                        <li><span>Lao People's Democratic Republic</span></li>
+                                        <li><span>Latvia</span></li>
+                                        <li><span>Lebanon</span></li>
+                                        <li><span>Lesotho</span></li>
+                                        <li><span>Liberia</span></li>
+                                        <li><span>Libya</span></li>
+                                        <li><span>Liechtenstein</span></li>
+                                        <li><span>Lithuania</span></li>
+                                        <li><span>Luxembourg</span></li>
+                                        <li><span>Macao</span></li>
+                                        <li><span>Macedonia, the former Yugoslav Republic of</span></li>
+                                        <li><span>Madagascar</span></li>
+                                        <li><span>Malawi</span></li>
+                                        <li><span>Malaysia</span></li>
+                                        <li><span>Maldives</span></li>
+                                        <li><span>Mali</span></li>
+                                        <li><span>Malta</span></li>
+                                        <li><span>Marshall Islands</span></li>
+                                        <li><span>Martinique</span></li>
+                                        <li><span>Mauritania</span></li>
+                                        <li><span>Mauritius</span></li>
+                                        <li><span>Mayotte</span></li>
+                                        <li><span>Mexico</span></li>
+                                        <li><span>Micronesia, Federated States of</span></li>
+                                        <li><span>Moldova, Republic of</span></li>
+                                        <li><span>Monaco</span></li>
+                                        <li><span>Mongolia</span></li>
+                                        <li><span>Montenegro</span></li>
+                                        <li><span>Montserrat</span></li>
+                                        <li><span>Morocco</span></li>
+                                        <li><span>Mozambique</span></li>
+                                        <li><span>Myanmar</span></li>
+                                        <li><span>Namibia</span></li>
+                                        <li><span>Nauru</span></li>
+                                        <li><span>Nepal</span></li>
+                                        <li><span>Netherlands</span></li>
+                                        <li><span>New Caledonia</span></li>
+                                        <li><span>New Zealand</span></li>
+                                        <li><span>Nicaragua</span></li>
+                                        <li><span>Niger</span></li>
+                                        <li><span>Nigeria</span></li>
+                                        <li><span>Niue</span></li>
+                                        <li><span>Norfolk Island</span></li>
+                                        <li><span>Northern Mariana Islands</span></li>
+                                        <li><span>Norway</span></li>
+                                        <li><span>Oman</span></li>
+                                        <li><span>Pakistan</span></li>
+                                        <li><span>Palau</span></li>
+                                        <li><span>Palestinian Territory, Occupied</span></li>
+                                        <li><span>Panama</span></li>
+                                        <li><span>Papua New Guinea</span></li>
+                                        <li><span>Paraguay</span></li>
+                                        <li><span>Peru</span></li>
+                                        <li><span>Philippines</span></li>
+                                        <li><span>Pitcairn</span></li>
+                                        <li><span>Poland</span></li>
+                                        <li><span>Portugal</span></li>
+                                        <li><span>Puerto Rico</span></li>
+                                        <li><span>Qatar</span></li>
+                                        <li><span>Réunion</span></li>
+                                        <li><span>Romania</span></li>
+                                        <li><span>Russian Federation</span></li>
+                                        <li><span>Rwanda</span></li>
+                                        <li><span>Saint Barthélemy</span></li>
+                                        <li><span>Saint Helena, Ascension and Tristan da Cunha</span></li>
+                                        <li><span>Saint Kitts and Nevis</span></li>
+                                        <li><span>Saint Lucia</span></li>
+                                        <li><span>Saint Martin (French part)</span></li>
+                                        <li><span>Saint Pierre and Miquelon</span></li>
+                                        <li><span>Saint Vincent and the Grenadines</span></li>
+                                        <li><span>Samoa</span></li>
+                                        <li><span>San Marino</span></li>
+                                        <li><span>Sao Tome and Principe</span></li>
+                                        <li><span>Saudi Arabia</span></li>
+                                        <li><span>Senegal</span></li>
+                                        <li><span>Serbia</span></li>
+                                        <li><span>Seychelles</span></li>
+                                        <li><span>Sierra Leone</span></li>
+                                        <li><span>Singapore</span></li>
+                                        <li><span>Sint Maarten (Dutch part)</span></li>
+                                        <li><span>Slovakia</span></li>
+                                        <li><span>Slovenia</span></li>
+                                        <li><span>Solomon Islands</span></li>
+                                        <li><span>Somalia</span></li>
+                                        <li><span>South Africa</span></li>
+                                        <li><span>South Georgia and the South Sandwich Islands</span></li>
+                                        <li><span>South Sudan</span></li>
+                                        <li><span>Spain</span></li>
+                                        <li><span>Sri Lanka</span></li>
+                                        <li><span>Sudan</span></li>
+                                        <li><span>Suriname</span></li>
+                                        <li><span>Svalbard and Jan Mayen</span></li>
+                                        <li><span>Swaziland</span></li>
+                                        <li><span>Sweden</span></li>
+                                        <li><span>Switzerland</span></li>
+                                        <li><span>Syrian Arab Republic</span></li>
+                                        <li><span>Taiwan, Province of China</span></li>
+                                        <li><span>Tajikistan</span></li>
+                                        <li><span>Tanzania, United Republic of</span></li>
+                                        <li><span>Thailand</span></li>
+                                        <li><span>Timor-Leste</span></li>
+                                        <li><span>Togo</span></li>
+                                        <li><span>Tokelau</span></li>
+                                        <li><span>Tonga</span></li>
+                                        <li><span>Trinidad and Tobago</span></li>
+                                        <li><span>Tunisia</span></li>
+                                        <li><span>Turkey</span></li>
+                                        <li><span>Turkmenistan</span></li>
+                                        <li><span>Turks and Caicos Islands</span></li>
+                                        <li><span>Tuvalu</span></li>
+                                        <li><span>Uganda</span></li>
+                                        <li><span>Ukraine</span></li>
+                                        <li><span>United Arab Emirates</span></li>
+                                        <li><span>United Kingdom</span></li>
+                                        <li><span>United States</span></li>
+                                        <li><span>United States Minor Outlying Islands</span></li>
+                                        <li><span>Uruguay</span></li>
+                                        <li><span>Uzbekistan</span></li>
+                                        <li><span>Vanuatu</span></li>
+                                        <li><span>Venezuela, Bolivarian Republic of</span></li>
+                                        <li><span>Viet Nam</span></li>
+                                        <li><span>Virgin Islands, British</span></li>
+                                        <li><span>Virgin Islands, U.S.</span></li>
+                                        <li><span>Wallis and Futuna</span></li>
+                                        <li><span>Western Sahara</span></li>
+                                        <li><span>Yemen</span></li>
+                                        <li><span>Zambia</span></li>
+                                        <li><span>Zimbabwe</span></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            
+                            <li><label for="vat-num">VAT number</label></li>
+                            <li class="vatNumb">
+                                <input class="mid vat-num" type="text" name="vat-num"/>
+                                <div class="mid-data-input-error">Incorrect VAT format</div>
+                            </li>
+                            
+                            <li><label for="e-mail">E-mail</label></li>
+                            <li class="mail-addr">
+                                <input class="e-mail" type="text" name="e-mail"/>&nbsp;&nbsp;*
+                                <div class="data-input-error">Incorrect e-mail format</div>
+                            </li>
+                            
+                            <li><label for="phone">Phone</label></li>
+                            <li class="telephone">
+                                <input class="mid phone" type="text" name="phone"/>&nbsp;&nbsp;*
+                                <div class="mid-data-input-error">Incorrect phone format</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </body>
+
+</html>

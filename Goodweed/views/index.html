@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goodweed</title>
+
+    <!-- Only required for desktop -->
+    <link rel="stylesheet" href="/css/mobile-angular-ui-hover.min.css" />
+
+    <!-- Always required -->
+    <link rel="stylesheet" href="/css/mobile-angular-ui-base.min.css" />
+
+    <!-- Only required for desktop -->
+    <link rel="stylesheet" href="/css/mobile-angular-ui-desktop.min.css" />
+
+    <link rel="stylesheet" href="/css/main.css">
+
+    <script src="/scripts/libs/angular.min.js"></script>
+    <script src="/scripts/libs/angular-route.min.js"></script>
+    <script src="/scripts/libs/mobile-angular-ui.min.js"></script>
+
+    <script src="/scripts/appMain.js"></script>
+
+    <script src="/scripts/controllers/mainCtrl.js"></script>
+    <script src="/scripts/controllers/myDealsCtrl.js"></script>
+    <script src="/scripts/controllers/featuredDealsCtrl.js"></script>
+    <script src="/scripts/controllers/youWonCtrl.js"></script>
+    <script src="/scripts/controllers/redeemCtrl.js"></script>
+    <script src="/scripts/controllers/redeemPopupCtrl.js"></script>
+    <script src="/scripts/controllers/signInCtrl.js"></script>
+    <script src="/scripts/controllers/verifyAccountCtrl.js"></script>
+    <script src="/scripts/controllers/forgotPinCtrl.js"></script>
+
+    <script src="/scripts/services/deals.js"></script>
+    <script src="/scripts/services/auth.js"></script>
+
+    <script src="/scripts/directives/moveNextOnMaxlengthDir.js"></script>
+    <script src="/scripts/directives/movePrevOnBackspaceDir.js"></script>
+
+  </head>
+  <body ng-app="goodweed" ng-controller="MainCtrl as mainCtrl">
+
+    <div class="app">
+      <div class="navbar navbar-app navbar-absolute-top navbar-whole">
+          <!-- Top Navbar -->
+        
+          <div class="navbar-brand navbar-brand-center navbar-middle" ui-yield-to="title">
+          </div>
+
+          <div class="btn-group pull-left" ui-yield-to="left-nav">
+          </div>
+
+          <div class="btn-group pull-right" ui-yield-to="right-nav">
+          </div>
+
+      </div>
+
+      <!-- App body -->
+
+      <div class='app-body'>
+        <div class='app-content'>
+          <ng-view></ng-view>
+        </div>
+      </div>
+    </div><!-- ~ .app -->
+
+    <!-- Modals and Overlays -->
+    <div ui-yield-to="modals"></div>
+  </body>
+</html>

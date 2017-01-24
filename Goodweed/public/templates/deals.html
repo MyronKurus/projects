@@ -1,0 +1,69 @@
+<div class="blur"></div>
+<div ui-content-for="title">
+    <span>My Deals</span>
+</div>
+
+<div ui-content-for="left-nav">
+    <div class="btn btn-navbar navbar-sides">
+    	<a href="#/">
+	        <img src="/resources/images/arrow-dark.png" id="navbar-left-arrow">
+	        Enter code
+	    </a>
+  </div>
+</div>
+
+<div ui-content-for="right-nav">
+    <div class="btn btn-navbar navbar-sides">
+	    <a href="#/featured-deals">
+	        Featured
+	        <img src="/resources/images/arrow-dark.png" id="navbar-right-arrow">
+	    </a>
+  </div>
+</div>
+
+<div class="scrollable" ng-controller="MyDealsCtrl as myDealCtrl">
+	<div class="scrollable-content">
+		
+		<div class="list-group text-center">
+			<div class="list-group-item" ng-hide="myDealCtrl.deals.length">
+				<div class="no-deals">No deals added yet, enter some code to add a deal</div>
+			</div>
+			<div class="list-group-item" ng-show="myDealCtrl.deals.length">
+				<div class="deal" ng-repeat="deal in myDealCtrl.deals" ng-style="{'background': deal.background, 'border': '1px dashed {{deal.border}}'}">
+					<img ng-src="{{ deal.deal.store.logo }}" class="top-logo">
+					<div class="contacts">
+						<div class="vert-center">
+							<div class="store">{{ deal.deal.store.name }}</div>
+							<div class="street">{{ deal.deal.store.address }}</div>
+							<div class="phone-number">{{ deal.deal.store.phone }}</div>
+						</div>
+					</div>
+					<div class="offer" ng-style="{'border': '1px dashed {{deal.border}}'}">
+						<div class="vert-center">
+							<div class="discount">{{ deal.deal.title }}</div>
+							<div class="description">{{ deal.deal.text }}</div>
+						</div>
+					</div>
+					<div class="redeem-button" ui-turn-on="redeemPopup" value="set" ng-click="myDealCtrl.redeem( deal._id ); myBlur='blur' ">Redeem</div>
+					<div class="remove-deal" ng-click="myDealCtrl.remove( deal._id )">Remove Deal ?</div>
+				</div>
+			</div>
+
+			<div class="list-group-item"  ng-show="myDealCtrl.deals.length">
+				
+				<div class="enter-deals">
+			
+					<a href="#/">+<br>Enter more codes to add more deals!</a>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div ui-content-for="modals">
+  <div ng-include="'/templates/redeem-popup.html'"></div>
+</div>

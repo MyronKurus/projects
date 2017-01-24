@@ -1,0 +1,26 @@
+<div class="modal modal-overlay goodweed-modal" ui-if="forgotPin" ui-shared-state="forgotPin" ng-controller="ForgotPinCtrl as forgotPinCtrl">
+  <div class="modal-dialog goodweed-modal-dialog">
+    <div class="modal-content goodweed-modal-content">
+      <div class="modal-header goodweed-modal-header">
+        <a href="#/" ui-turn-off="forgotPin" ui-turn-on="signIn">
+          <img src="../resources/images/x.png" class="goodweed-modal-x">
+        </a>
+      </div>
+      <div class="modal-body">
+
+      	<div class="goodweed-modal-title">Forgot pin</div>
+
+
+  			<div class="goodweed-modal-text">Enter your phone number and we'll text your pin</div>
+        <form name="phone">
+  			 <input name="phoneInput" type="text" class="phone-input" placeholder="(123)-456-7890" ng-model="forgotPinCtrl.phoneInput" required>
+        </form>
+
+        <div class="goodweed-modal-button" ng-click="forgotPinCtrl.changePhone" ng-show="phone.phoneInput.$dirty" ui-turn-off="forgotPin" ui-turn-on="verifyAccount">
+          <div class="vert-center">Send Text</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

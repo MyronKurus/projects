@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <title>DeviLib</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <link rel="stylesheet" href="/css/libs/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/media.css" />
+
+    <script src="/js/libs/angular.js"></script>
+    <script src="/js/libs/angular-route.min.js"></script>
+    <script src="/js/libs/jquery-2.1.4.min.js"></script>
+    <script src="/css/libs/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/js/main.js"></script>
+
+    <script src="/js/services/signUpService.js"></script>
+    <script src="/js/services/signInService.js"></script>
+    <script src="/js/services/logOutService.js"></script>
+
+    <script src="/js/controllers/signUpCtrl.js"></script>
+    <script src="/js/controllers/signInCtrl.js"></script>
+    <script src="/js/controllers/logOutCtrl.js"></script>
+
+</head>
+
+<body ng-app="devilib">
+
+    <header>
+        <nav>
+            <div class="container headerss">
+                <div class="row header-width">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle collapsed menu_btn" data-toggle="collapse" data-target="#top_menu"></button>
+                        <a href="/" class="navbar-brand"><img class="header-img" src="/img/logo.png"></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="top_menu">
+                        <div class="mob-cont">
+                            <ul class="menu left">
+                                <li><a href="#">Personal</a></li>
+                                <li><a href="#">Business</a></li>
+                                <li><a href="#">Explore</a></li>
+                            </ul>
+                            <ul class="menu right">
+                                <div class="below-btn-menu">
+                                    <li><a href="#" style="display: none;">Pricing</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="#" style="display: none;">Support</a></li>
+                                </div>
+                                <label class="form-cont">
+                                    <input type="text" class="form-cont" placeholder="Search DeviLib">
+                                </label>
+                                <div class="bottom-menu">
+                                    <a href="/signin"><button type="button" class="btn signin btn-default">Sign in</button></a>
+                                    <a href="/signup"><button type="button" class="btn signup btn-success">Sign up</button></a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <ng-view></ng-view>
+
+    <div class="fottert-homepage">
+        <div class="center-footer-block">
+            <ul class="ul-left">
+                <li class="footer-home-block"><p>@2017 DeviLib</p></li>
+                <li class="footer-home-block"><a href="#">Terms</a></li>
+                <li class="footer-home-block"><a href="#">Privacy</a></li>
+            </ul>
+        
+            <div class="icon-site">
+                <a href="#"><img class="logos" src="/img/logo.png"/></a>
+            </div>
+        
+            <ul class="ul-right">
+                <li class="footer-home-block"><a href="#">Contact DeviLib</a></li>
+                <li class="footer-home-block"><a href="#">Blog</a></li>
+                <li class="footer-home-block"><a href="#">About</a></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>

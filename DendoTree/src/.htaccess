@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^img\/([0-9]+)\/([0-9]+)\/([0-9]+)\.jpg /image.php?siteId=$1&itemId=$3&wm=$2 [QSA]

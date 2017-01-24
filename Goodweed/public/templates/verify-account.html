@@ -1,0 +1,37 @@
+<div class="modal modal-overlay verify-account" ui-if="verifyAccount" ui-shared-state="verifyAccount" ng-controller="VerifyAccountCtrl as verifyAccountCtrl">
+  <div class="modal-dialog verify-account-dialog">
+    <div class="modal-content verify-account-content">
+      <div class="modal-header verify-account-header">
+        <a href="#/" ui-turn-off="verifyAccount" ui-turn-on="redeem">
+          <img src="../resources/images/x.png" class="verify-account-x">
+        </a>
+      </div>
+      <div class="modal-body">
+
+      	<div class="verify-account-title">Verify Account</div>
+
+
+  			<div class="pin-text">Enter your 4-pin to verify this account</div>
+        
+        <div>
+            <form class="pin">
+                <input class="pin-input" type="tel" id="part1" ng-model="verifyAccountCtrl.pinPart1" maxlength="1" move-next-on-maxlength />
+                <input class="pin-input" type="tel" id="part2" ng-model="verifyAccountCtrl.pinPart2" maxlength="1" move-next-on-maxlength move-prev-on-backspace />
+                <input class="pin-input" type="tel" id="part3" ng-model="verifyAccountCtrl.pinPart3" maxlength="1" move-next-on-maxlength move-prev-on-backspace />
+                <input class="pin-input" type="tel" id="part4" ng-model="verifyAccountCtrl.pinPart4" maxlength="1" move-prev-on-backspace tabindex="-1" />
+            </form>
+        </div>
+        
+        <!-- <form name="pin" class="pin" id="pin">
+         <input name="pinInput" type="password" class="phone-input" ng-model="verifyAccountCtrl.pinInput" required max="4">
+        </form> -->
+        <div class="forgot" ui-turn-off="verifyAccount" ui-turn-on="forgotPin">Forgot pin?</div>
+
+        <div class="continue" ng-click="verifyAccountCtrl.signIn()">
+          <div class="view-my-deals">View My Deals</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

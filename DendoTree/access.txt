@@ -1,0 +1,3 @@
+node server --debug
+login: root@email.com
+pass:  password

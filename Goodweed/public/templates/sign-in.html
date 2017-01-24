@@ -1,0 +1,26 @@
+<div class="modal modal-overlay sign-in" ui-if="signIn" ui-shared-state="signIn" ng-controller="SignInCtrl as signInCtrl">
+  <div class="modal-dialog sign-in-dialog">
+    <div class="modal-content sign-in-content">
+      <div class="modal-header sign-in-header">
+        <a href="#/" ui-turn-off="signIn">
+          <img src="../resources/images/x.png" class="sign-in-x">
+        </a>
+      </div>
+      <div class="modal-body">
+
+      	<div class="sign-in-title">Sign in</div>
+
+
+  			<div class="phone-text">Enter your phone number to sign into my deals</div>
+        <form name="phone">
+  			 <input name="phoneInput" type="tel" tabindex="-1" class="phone-input" placeholder="(123)-456-7890" ng-model="signInCtrl.phoneInput" required>
+        </form>
+
+        <div class="continue" ng-click="signInCtrl.changePhone()" ng-show="phone.phoneInput.$dirty" ui-turn-off="signIn" ui-turn-on="verifyAccount">
+          <div class="vert-center">Continue</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

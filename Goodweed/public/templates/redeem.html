@@ -1,0 +1,44 @@
+<div ui-content-for="title">
+  <span></span>
+</div>
+
+<div ui-content-for="left-nav">
+    <div class="btn btn-navbar navbar-sides">
+  </div>
+</div>
+
+<div ui-content-for="right-nav">
+    <div class="btn btn-navbar navbar-sides">
+      <a ng-click="mainCtrl.checkPhone()">
+        My Deals
+        <img src="/resources/images/arrow-dark.png" id="navbar-right-arrow">
+      </a>
+  </div>
+</div>
+
+<div class="scrollable redeem" ng-controller="RedeemCtrl as redeemCtrl">
+  <div class="scrollable-content">
+    
+    <div class="list-group text-center redeem-body">
+        <div class="redeem-title">Redeem your code to add a deal!</div>
+        <form name="code">
+           <input name="codeInput" type="tel" class="code-input" placeholder="GW7265" ng-model="redeemCtrl.codeInput" tabindex="-1" required>
+        </form>
+        <a class="redeem-no-code" href="#/featured-deals">I dont have code</a>
+
+        <div class="claim-deal" ng-click="redeemCtrl.assign()" ng-show="code.codeInput.$valid">
+          <div class="vert-center">Claim Your Deal</div>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+<div ui-content-for="modals">
+  <div ng-include="'/templates/you-won.html'"></div>
+  <div ng-include="'/templates/sign-in.html'"></div>
+  <div ng-include="'/templates/verify-account.html'"></div>
+  <div ng-include="'/templates/forgot-pin.html'"></div>
+  <div ng-include="'/templates/wrong-pin-popup.html'"></div>
+  <div ng-include="'/templates/wrong-code-popup.html'"></div>
+</div>

@@ -1,0 +1,802 @@
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url(../resources/fonts/Montserrat-Bold.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url(../resources/fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-SemiBold;
+    src: url(../resources/fonts/Montserrat-SemiBold.otf);
+}
+
+@font-face {
+    font-family: Montserrat-ExtraBold;
+    src: url(../resources/fonts/Montserrat-ExtraBold.otf);
+}
+
+a {
+	color: #1C1F1D;
+}
+
+.vert-center {
+	position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.navbar-whole {
+	border-width: 1px;
+	border-color: #fff;
+}
+
+.navbar-sides {
+	font-family: Montserrat-Regular;
+	font-size: 14px;
+	color: #1C1F1D;
+	letter-spacing: 0px;
+}
+
+.navbar-middle {
+	font-family: Montserrat-Regular;
+	font-size: 18px;
+	color: #1C1F1D;
+	letter-spacing: 0px;
+	position: absolute;
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+#navbar-right-arrow {
+	transform: rotate(180deg);
+}
+
+.no-deals {
+	font-family: Montserrat-SemiBold;
+    font-size: 16px;
+    color: #000000;
+    letter-spacing: 0px;
+    line-height: 29px;
+}
+
+.deal {
+	position: relative;
+	background-color: rgba(98,168,183,0.3);
+	height: 208px;
+	max-width: 342px;
+    width: 96%;
+    min-width: 300px;
+	border: 1px dashed #ffffff;
+	border-radius: 4px;
+	margin: auto;
+	margin-top: 29px;
+}
+
+.deal .top-logo {
+	position: absolute;
+	left: 22px;
+	top: -19px;
+	width: 35px;
+	height: 35px;
+	background: #ffffff;
+	border: 1px solid #E9E9E9;
+	border-radius: 50%;
+}
+
+.deal .contacts {
+	position: relative;
+	display: inline-block;
+	width: 180px;
+	height: 103px;
+	margin-top: 17px;
+	float: left;
+    margin-left: 15px;
+}
+
+.deal .contacts .store {
+	font-family: Montserrat-SemiBold;
+	font-size: 16px;
+	color: #000000;
+	letter-spacing: 0px;
+	line-height: 29px;
+	text-align: left;
+}
+
+.deal .contacts .street {
+	font-family: Montserrat-Regular;
+	font-size: 10px;
+	color: #1C1F1D;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.deal .contacts .phone-number {
+	font-family: Montserrat-Regular;
+	font-size: 12px;
+	color: #0292BE;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.deal .offer {
+	position: relative;
+	display: inline-block;
+	width: 88px;
+    height: 94px;
+	margin-top: 17px;
+	margin-bottom: 10px;
+	background: #ffffff;
+	border-radius: 4px;
+}
+
+.deal .offer .discount {
+	font-family: Montserrat-ExtraBold;
+	font-size: 16px;
+	color: #1C1F1D;
+	letter-spacing: 0px;
+	text-align: center;
+}
+
+.deal .offer .description {
+	font-family: Montserrat-Regular;
+	font-size: 12px;
+	color: #1C1F1D;
+	letter-spacing: 0px;
+	text-align: center;
+}
+
+.deal .redeem-button {
+	max-width: 315px;
+    width: 96%;
+	height: 47px;
+	background: #00D160;
+	box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.19);
+	border-radius: 4px;
+	/*margin-left: 15px;
+	margin-top: 12px;*/
+	margin: auto;
+	font-family: Montserrat-Bold;
+	font-size: 16px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	line-height: 47px;
+	cursor: pointer;
+}
+
+.deal .remove-deal {
+	opacity: 0.45;
+	font-family: Montserrat-Regular;
+	font-size: 10px;
+	color: #1C1F1D;
+	letter-spacing: 0px;
+	text-decoration: underline;
+	float: right;
+    margin-right: 17px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+/*popup*/
+
+.popup-dialog {
+	width: 350px;
+	margin: auto;
+	top: 50%;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    left: 50%;
+}
+
+.popup-header {
+	border: none;
+}
+
+.popup-title {
+	font-family: Montserrat-Regular;
+    font-size: 18px;
+    color: #1C1F1D;
+    letter-spacing: 0px;
+    text-align: center;
+    margin: auto;
+}
+
+.popup-text {
+	font-family: Montserrat-Regular;
+    font-size: 14px;
+    color: #1C1F1D;
+    letter-spacing: 0px;
+    text-align: left;
+    padding: 0 25px;
+    text-align: center;
+}
+
+.popup-footer {
+	border: none;
+}
+
+.buttons {
+	width: 80%;
+	margin: auto;
+}
+
+.buttons .btn {
+	width: 118px;
+	height: 50px;
+	float: none;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 15px 0;
+}
+
+.buttons .btn:first-child {
+	margin-right: 8px;
+} 
+
+.buttons .popup-ok:hover {
+	background-color: #7ADE60;
+	outline: none;
+	border: none;
+	padding-top: 16px;
+}
+
+.popup-ok {
+	background: #00D160;
+	border-color: #00D160;
+}
+
+/*featured deal page*/
+
+.featured-deal .redeem {
+	margin-top: 25px;
+}
+
+/*you-won deal page*/
+
+.you-won {
+	background: #3C3B42;
+	overflow-y: scroll;
+}
+
+.you-won .you-won-dialog {
+	height: 100%;
+}
+
+.you-won .you-won-content {
+	height: 100%;
+}
+
+.you-won .you-won-header {
+	border-bottom: none;
+}
+
+.you-won-header .you-won-x {
+
+}
+
+.you-won .you-won-title {
+	font-family: Montserrat-SemiBold;
+	font-size: 28px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	line-height: 29px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.you-won .you-won-deal {
+	height: 137px;
+	margin-top: 48px;
+}
+
+.you-won .phone-text {
+	font-family: Montserrat-Regular;
+	font-size: 18px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	line-height: 23px;
+	width: 287px;
+    margin-top: 31px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.you-won .phone-input {
+	width: 278px;
+	height: 60px;
+	display: block;
+	margin-top: 25px;
+	margin-right: auto;
+    margin-left: auto;
+    background: #FFFFFF;
+	border-radius: 3px;
+	font-family: Montserrat-Regular;
+	font-size: 24px;
+	color: #3C3B42;
+	letter-spacing: 3.4px;
+	text-align: center;
+}
+
+.you-won .you-won-footer {
+	border-top: none;
+	width: 100%;
+	position: absolute;
+	bottom: 13px;
+}
+
+.add-to-deals {
+	background: #09CE59;
+	border-radius: 4px;
+	max-width: 342px;
+    width: 96%;
+	height: 70px;
+	font-family: Montserrat-Bold;
+	font-size: 22px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	text-align: center;
+	margin: auto;
+	cursor: pointer;
+	position: relative;
+	margin-top: 108px;
+}
+
+/* redeem page design */
+
+.redeem {
+	background: #3C3B42;
+}
+
+.redeem .redeem-dialog {
+	height: 100%;
+}
+
+.redeem .redeem-content {
+	height: 100%;
+}
+
+.redeem .redeem-header {
+	border-bottom: none;
+}
+
+.redeem .redeem-nav {
+	font-family: Montserrat-Regular;
+	font-size: 16px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	float: right;
+}
+
+.redeem .redeem-title {
+	font-family: Montserrat-Bold;
+	font-size: 29px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	line-height: 35px;
+	text-align: center;
+    width: 290px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 140px;
+}
+
+.redeem .redeem-body {
+} 
+
+.redeem .code-input {
+	width: 217px;
+	height: 60px;
+	display: block;
+	margin-top: 18px;
+	margin-left: auto;
+    margin-right: auto;
+	background: #FFFFFF;
+	border-radius: 3px;
+	font-family: Montserrat-Regular;
+	font-size: 24px;
+	color: #3C3B42;
+	letter-spacing: 3.4px;
+	text-align: center;
+}
+
+.redeem .redeem-footer {
+	border-top: none;
+}
+
+.redeem .redeem-no-code {
+	font-family: Montserrat-Bold;
+    font-size: 15px;
+    color: #777;
+    letter-spacing: 0px;
+    line-height: 15px;
+    text-align: center;
+    margin-left: auto;
+    display: block;
+    margin-right: auto;
+    border-bottom: 1px #777 solid;
+    margin-top: 20px;
+    width: 130px;
+    padding-bottom: 4px;
+    text-decoration: none;
+}
+
+.redeem .claim-deal {
+	background: #09CE59;
+	border-radius: 4px;
+	max-width: 342px;
+    width: 96%;
+	height: 70px;
+	font-family: Montserrat-Bold;
+	font-size: 22px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	text-align: center;
+	margin: auto;
+	cursor: pointer;
+	position: relative;
+	margin-top: 140px;
+}
+
+/*Sign In page*/
+
+.sign-in {
+	background: #3C3B42;
+	overflow-y: scroll;
+}
+
+.sign-in .sign-in-dialog {
+	height: 100%;
+}
+
+.sign-in .sign-in-content {
+	height: 100%;
+}
+
+.sign-in .sign-in-header {
+	border-bottom: none;
+}
+
+.sign-in-header .sign-in-x {
+
+}
+
+.sign-in .sign-in-title {
+	font-family: Montserrat-SemiBold;
+	font-size: 28px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	line-height: 29px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.sign-in .sign-in-deal {
+	height: 137px;
+	margin-top: 48px;
+}
+
+.sign-in .phone-text {
+	font-family: Montserrat-Regular;
+	font-size: 18px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	line-height: 23px;
+	width: 287px;
+    margin-top: 31px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.sign-in .phone-input {
+	width: 278px;
+	height: 60px;
+	display: block;
+	margin-top: 25px;
+	margin-right: auto;
+    margin-left: auto;
+    background: #FFFFFF;
+	border-radius: 3px;
+	font-family: Montserrat-Regular;
+	font-size: 24px;
+	color: #3C3B42;
+	letter-spacing: 3.4px;
+	text-align: center;
+}
+
+.sign-in .sign-in-footer {
+	border-top: none;
+	width: 100%;
+	position: absolute;
+	bottom: 13px;
+}
+
+.continue {
+	background: #09CE59;
+	border-radius: 4px;
+	max-width: 342px;
+	width: 96%;
+	height: 70px;
+	font-family: Montserrat-Bold;
+	font-size: 22px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	text-align: center;
+	margin: auto;
+	cursor: pointer;
+	position: relative;
+	margin-top: 265px;
+}
+
+/*Verify Account page*/
+
+.verify-account {
+	background: #3C3B42;
+	overflow-y: scroll;
+}
+
+.verify-account .verify-account-dialog {
+	height: 100%;
+}
+
+.verify-account .verify-account-content {
+	height: 100%;
+}
+
+.verify-account .verify-account-header {
+	border-bottom: none;
+}
+
+.verify-account-header .verify-account-x {
+
+}
+
+.verify-account .verify-account-title {
+	font-family: Montserrat-SemiBold;
+	font-size: 28px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	line-height: 29px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.verify-account .verify-account-deal {
+	height: 137px;
+	margin-top: 48px;
+}
+
+.verify-account .pin-text {
+	font-family: Montserrat-Regular;
+	font-size: 18px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	line-height: 23px;
+	width: 287px;
+    margin-top: 31px;
+    margin-bottom: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.verify-account .phone-input {
+	width: 278px;
+	height: 60px;
+	display: block;
+	margin-top: 25px;
+	margin-right: auto;
+    margin-left: auto;
+    background: #FFFFFF;
+	border-radius: 3px;
+	font-family: Montserrat-Regular;
+	font-size: 24px;
+	color: #3C3B42;
+	letter-spacing: 3.4px;
+	text-align: center;
+}
+
+.verify-account .verify-account-footer {
+	border-top: none;
+	width: 100%;
+	position: absolute;
+	bottom: 13px;
+}
+
+.verify-account .pin {
+	margin-top: 35px;
+	margin: auto;
+	width: 268px;
+}
+
+.pin-input {
+	width: 60px;
+	height: 60px;
+	display: inline-block;
+	border-radius: 5px;
+	margin-right: 5px;
+	text-align: center; 
+	font-size: 40px;
+}
+
+.pin-input:last-child {
+	margin-right: 0;
+}
+
+.forgot {
+	color: #858181;
+	margin: auto;
+	margin-top: 15px;
+	font-weight: 700;
+	font-size: 1.2em;
+	width: 290px;
+    text-align: right;
+}
+
+.view-my-deals {
+	background: #09CE59;
+	border-radius: 4px;
+	max-width: 342px;
+	width: 96%;
+	height: 70px;
+	font-family: Montserrat-Bold;
+	font-size: 22px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	text-align: center;
+	margin: auto;
+	cursor: pointer;
+	position: relative;
+	margin-top: 108px;
+	padding-top: 20px;
+}
+
+/*modal windows*/
+
+.goodweed-modal{
+	background: #3C3B42;
+	overflow-y: scroll;
+}
+
+.goodweed-modal .goodweed-modal-dialog {
+	height: 100%;
+}
+
+.goodweed-modal .goodweed-modal-content {
+	height: 100%;
+}
+
+.goodweed-modal .goodweed-modal-header {
+	border-bottom: none;
+}
+
+.goodweed-modal-header .goodweed-modal-x {
+
+}
+
+.goodweed-modal .goodweed-modal-title {
+	font-family: Montserrat-SemiBold;
+	font-size: 28px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	line-height: 29px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.goodweed-modal .goodweed-modal-deal {
+	height: 137px;
+	margin-top: 48px;
+}
+
+.goodweed-modal .goodweed-modal-text {
+	font-family: Montserrat-Regular;
+	font-size: 18px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	line-height: 23px;
+	width: 287px;
+    margin-top: 31px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.goodweed-modal .phone-input {
+	width: 278px;
+	height: 60px;
+	display: block;
+	margin-top: 25px;
+	margin-right: auto;
+    margin-left: auto;
+    background: #FFFFFF;
+	border-radius: 3px;
+	font-family: Montserrat-Regular;
+	font-size: 24px;
+	color: #3C3B42;
+	letter-spacing: 3.4px;
+	text-align: center;
+}
+
+.goodweed-modal .goodweed-modal-footer {
+	border-top: none;
+	width: 100%;
+	position: absolute;
+	bottom: 13px;
+}
+
+.goodweed-modal .goodweed-modal-button {
+	background: #09CE59;
+	border-radius: 4px;
+	max-width: 342px;
+	width: 96%;
+	height: 70px;
+	font-family: Montserrat-Bold;
+	font-size: 22px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	text-align: center;
+	margin: auto;
+	cursor: pointer;
+	position: relative;
+	margin-top: 265px;
+}
+
+.list-group-item a {
+	font-weight: 700;
+	color: #B9B4AE;
+}
+
+.blur {
+    -webkit-filter: blur(5px);
+       -moz-filter: blur(5px);
+         -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+            filter: blur(5px);
+}
+
+.modal-body {
+    padding: 0;
+}
+
+.list-group-item {
+	padding: 10px 0;
+}
+
+.phone-pin-input {
+	width: 270px;
+	margin: auto;
+}
+
+.deal.ng-scope {
+  	width: 100%;
+}
+
+.offer {
+  	width: 100px; /* ideally calc this as the "remainder" of the div */ 
+  	height: auto;
+}
+
+.deal .contacts .street.ng-binding {
+  /*white-space: nowrap;*/
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+}
+
+.deal .contacts .city.ng-binding {
+  	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+}
+
+.deal .redeem-button {
+  	width: 80vw;
+}

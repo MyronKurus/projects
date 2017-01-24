@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "argparse": "^1.0.6",
+    "body-parser": "^1.14.2",
+    "cookie-parser": "^1.4.0",
+    "csprng": "^0.1.1",
+    "express": "^4.13.3",
+    "formidable": "^1.0.17",
+    "fs-extra": "^0.26.4",
+    "gm": "^1.22.0",
+    "mysql": "^2.10.2",
+    "quickthumb": "0.0.12"
+  }
+}

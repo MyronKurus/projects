@@ -1,0 +1,16 @@
+<div class="modal popup" ui-if="wrongCodePopup" ui-shared-state="wrongCodePopup">
+  <div class="modal-dialog popup-dialog">
+    <div class="modal-content popup-content">
+      <div class="modal-header popup-header">
+        <div class="popup-title">
+          Better luck next time, please try another code
+        </div>
+      </div>
+      <div class="modal-footer popup-footer">
+        <div ui-turn-off="wrongCodePopup">
+          <div class="btn btn-primary popup-ok">Ok</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

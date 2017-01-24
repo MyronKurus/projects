@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <title>Login page</title>
+
+        <link rel="stylesheet" type="text/css" href="styles/Login.css" />
+
+        <script src="scripts/lib/jq.min.js"></script>
+        <script src="scripts/Login.js"></script>
+
+    </head>
+
+    <body>
+
+        <div id="signup-box-wrapper">
+            <form id="signup-box">
+                <div id="title"><a href="/">Dendo tree</a><div id="beta">beta</div></div>
+                <div class="field" id="email">
+                    <input type="text" placeholder="Email" />
+                    <div class="error">error</div>
+                </div>
+                <div class="field" id="password">
+                    <input type="password" placeholder="Password" />
+                    <div class="error">error</div>
+                </div>
+                <div id="keep-logged-in-wrapper">
+                    <label id="keep-logged-in"><input type="checkbox" />Keep me logged in until I log out</label>
+                </div>
+                <button type="submit" id="signup-btn">LOG IN</button>
+                <div id="bottom-links-wrapper">
+                    <a href="/" id="home">Home</a>
+                    <span>|</span>
+                    <a href="#" id="forgot-password">Forgot password?</a>
+                </div>
+            </form>
+        </div>
+
+    </body>
+
+</html>
